@@ -1,0 +1,33 @@
+# This is my pipeline 
+#
+#
+#
+
+name: CI-CD-pipeline-to-AWS
+env:
+  EB_PACKAGE_S3_BUCKET_NAME : "man.bucket"
+  EB_APPLICATION_NAME       : "Mytest"
+  EB-ENVIROMENT             : "Mytest-env"
+  DEPLOY_PACKAGE_NAME       : "flask_app_${{ github.sha }}.zip"
+  AWS_REGION_NAME           : "eu-central-1"
+
+on:
+  push:
+    branches:
+        - master
+        
+jobs:
+    ci-part: 
+      runs-on: ubuntu-latest
+      
+      
+      steps:
+      - name: Git clone our repo
+        uses: actions/checkout@v1
+                     
+      - name: Create ZIP deployment package
+        run : zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+        
+        
+      
+

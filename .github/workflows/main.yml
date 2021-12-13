@@ -61,7 +61,7 @@ jobs:
           --description "CommitSHA-${{ github.sha }}"
           
       - name: Deploy new ElasticBeanstalk Application Version
-        run : aws elasticbeanstalk update-enviroment --envirometn-name ${{ env.EB-ENVIROMENT }} --version-label "Ver ${{ github.sha }}"
+        run : aws elasticbeanstalk update-environment --environmetn-name ${{ env.EB-ENVIROMENT }} --version-label "Ver ${{ github.sha }}"
         
       - name: Print Happy Message for CD finish
         run : echo "CD pipeline part finished successfully"  
